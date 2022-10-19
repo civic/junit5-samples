@@ -11,11 +11,16 @@
 package com.example.project;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 class CalculatorTests {
 
@@ -37,5 +42,21 @@ class CalculatorTests {
 		Calculator calculator = new Calculator();
 		assertEquals(expectedResult, calculator.add(first, second),
 				() -> first + " + " + second + " should equal " + expectedResult);
+	}
+
+	@Test
+	void junit5AssertTest() {
+		int actual = new Calculator().add(1, 2);
+		// assertTrue(actual > 4);
+		assertEquals(4, actual);
+	}
+
+	@Test
+	void hamcrestAssertTest() {
+		int actual = new Calculator().add(1, 2);
+		// assertThat(actual, is(greaterThan(4)));
+
+		assertThat(actual, is(4));
+
 	}
 }
